@@ -84,6 +84,8 @@ INSERT INTO quotes (content, author, category) VALUES
 ('The only way to do great work is to love what you do.', 'Steve Jobs', 'Success'),
 ('Success is not final, failure is not fatal.', 'Winston Churchill', 'Success');
 
+</details>
+
 ## 📋 Project ScreenShots
 
 https://github.com/yashajaykadav/DailyQuotesApp/issues/1#issue-3809893910
