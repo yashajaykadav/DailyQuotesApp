@@ -8,6 +8,65 @@
 
 This project was developed as a submission for the Mobile Application Developer Assignment, focusing on **AI-assisted development efficiency**.
 
+##Project Database Structure
+
+-- 2. ENABLE UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- 3. PROFILES (Updated to include full_name)
+CREATE TABLE profiles (
+  id uuid references auth.users(id) on delete cascade primary key,
+  full_name text, 
+  avatar_url text,
+  updated_at timestamp with time zone
+);
+
+-- 4. QUOTES
+CREATE TABLE quotes (
+  id uuid primary key default uuid_generate_v4(),
+  content text not null,
+  author text not null,
+  category text not null check (category in ('Motivation','Love','Success','Wisdom','Humor')),
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- 5. FAVORITES
+CREATE TABLE favorites (
+  user_id uuid references auth.users(id) on delete cascade,
+  quote_id uuid references quotes(id) on delete cascade,
+  primary key (user_id, quote_id)
+);
+
+-- 6. SECURITY (RLS)
+ALTER TABLE quotes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE favorites ENABLE ROW LEVEL SECURITY;
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+
+-- Policies
+CREATE POLICY "Public quotes are viewable by everyone" ON quotes FOR SELECT USING (true);
+CREATE POLICY "Users can manage their own favorites" ON favorites FOR ALL USING (auth.uid() = user_id);
+CREATE POLICY "Public profiles are viewable by everyone" ON profiles FOR SELECT USING (true);
+CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
+
+-- 7. AUTOMATION: Trigger to create profile on signup
+-- This function runs automatically when a user signs up via the App
+CREATE OR REPLACE FUNCTION handle_new_user() 
+RETURNS trigger AS $$
+BEGIN
+  INSERT INTO public.profiles (id, full_name, avatar_url)
+  VALUES (
+    new.id, 
+    new.raw_user_meta_data->>'full_name', 
+    new.raw_user_meta_data->>'avatar_url'
+  );
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE handle_new_user();
+
 ## 📋 Project ScreenShots
 
 https://github.com/yashajaykadav/DailyQuotesApp/issues/1#issue-3809893910
