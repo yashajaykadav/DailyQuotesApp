@@ -8,7 +8,20 @@
 
 This project was developed as a submission for the Mobile Application Developer Assignment, focusing on **AI-assisted development efficiency**.
 
-##Project Database Structure
+### 4. Database Setup (Supabase)
+
+Run the following SQL script in your Supabase SQL Editor. 
+
+> **Note:** This script includes a robust **Trigger** that automatically creates a public user profile row whenever a new user signs up via Authentication.
+
+<details>
+<summary><strong>👇 Click to view the full SQL Schema & Triggers</strong></summary>
+
+```sql
+-- 1. CLEANUP
+DROP TABLE IF EXISTS favorites CASCADE;
+DROP TABLE IF EXISTS quotes CASCADE;
+DROP TABLE IF EXISTS profiles CASCADE;
 
 -- 2. ENABLE UUID
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -49,7 +62,6 @@ CREATE POLICY "Public profiles are viewable by everyone" ON profiles FOR SELECT 
 CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
 
 -- 7. AUTOMATION: Trigger to create profile on signup
--- This function runs automatically when a user signs up via the App
 CREATE OR REPLACE FUNCTION handle_new_user() 
 RETURNS trigger AS $$
 BEGIN
@@ -66,6 +78,11 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE PROCEDURE handle_new_user();
+
+-- 8. SEED DATA (Optional)
+INSERT INTO quotes (content, author, category) VALUES
+('The only way to do great work is to love what you do.', 'Steve Jobs', 'Success'),
+('Success is not final, failure is not fatal.', 'Winston Churchill', 'Success');
 
 ## 📋 Project ScreenShots
 
