@@ -41,13 +41,65 @@ This project demonstrates an **AI-First Development Strategy**. I utilized AI to
 | Task                      | AI Tool Used      | Implementation Details                                                                                   |
 | ------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------- |
 | **Database Architecture** | ChatGPT / Claude  | Generated complex SQL Schema with RLS (Row Level Security) policies for secure user data.                |
-| **Logic & State**         | Cursor (Composer) | Generated the `AuthContext` and Supabase client logic to handle session persistence across app restarts. |
+| **Logic & State**         | Gemini            | Generated the `AuthContext` and Supabase client logic to handle session persistence across app restarts. |
 | **UI Design**             | Text-to-UI        | Generated the `QuoteCard` styling and "Share as Image" logic using `react-native-view-shot`.             |
 | **Debugging**             | AI Chat           | Solved a critical Android crash (`SecureStore` 2KB limit) by refactoring to `AsyncStorage`.              |
 
+## Ai Prompts which used in projects
+
+--**B. Create Login Screen** (`app/auth/login.tsx`):
+
+Use AI prompt:
+```
+Create a React Native login screen with email/password fields using Expo Router.
+Include form validation, loading states, and error handling.
+Style it with a modern, clean design. Include link to signup.
+
+--**B. Create useQuotes Hook** (`src/hooks/useQuotes.ts`):
+
+AI Prompt:
+```
+Create a React Query hook for fetching quotes from Supabase with:
+- Pagination (20 quotes per page)
+- Category filtering
+- Search by text/author
+- Error handling
+Include TypeScript types
+```
+
+**C. Home Screen** (`app/(tabs)/index.tsx`):
+
+AI Prompt:
+```
+Create a React Native home screen with:
+- "Quote of the Day" card at top (larger, featured)
+- Horizontal category filter chips
+- FlatList of quote cards with infinite scroll
+- Pull-to-refresh
+- Search bar
+- Handle loading and empty states
+Use modern, card-based design with shadows
+```
+
+**D. Quote Card Component** (`src/components/quote/QuoteCard.tsx`):
+
+AI Prompt:
+```
+Create a reusable QuoteCard component with:
+- Quote text (larger font)
+- Author name
+- Category badge
+- Heart icon (favorite button)
+- Share button
+- Smooth press animations
+- Support light/dark mode
+Include TypeScript props
+```
+
+
 ## 🛠️ Tech Stack
 
-- **Framework**: React Native (Expo Router v3)
+- **Framework**: React Native
 - **Language**: TypeScript
 - **Backend**: Supabase (PostgreSQL + Auth)
 - **Navigation**: File-based routing (`app/` directory)
