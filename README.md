@@ -2,7 +2,7 @@
 
 > A full-featured Quote Discovery app with Cloud Sync, built in record time using an AI-First workflow.
 
-*(Note: Replace this link with a real screenshot of your Home Screen or "Share" card after you upload to GitHub)*
+
 
 ## 📋 Project Overview
 
@@ -111,4 +111,4 @@ QuoteVault/
 
 ---
 
-**Developed by [Your Name]** *Built with ❤️ and AI*
+**Developed by [Yash]** *Built with ❤️ and AI*
