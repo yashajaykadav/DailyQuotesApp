@@ -3,12 +3,15 @@
 > A full-featured Quote Discovery app with Cloud Sync, built in record time using an AI-First workflow.
 
 
-
 ## 📋 Project Overview
 
 **QuoteVault** is a modern mobile application designed to discover, collect, and share inspiring quotes. Built with **React Native (Expo)** and **Supabase**, it features secure user authentication, real-time database syncing, and native sharing capabilities.
 
 This project was developed as a submission for the Mobile Application Developer Assignment, focusing on **AI-assisted development efficiency**.
+
+## 📋 Project ScreenShots
+
+https://github.com/yashajaykadav/DailyQuotesApp/issues/1#issue-3809893910
 
 ## ✨ Features
 
