@@ -85,6 +85,7 @@ INSERT INTO quotes (content, author, category) VALUES
 ('Success is not final, failure is not fatal.', 'Winston Churchill', 'Success');
 
 </details>
+```
 
 ## 📋 Project ScreenShots
 
