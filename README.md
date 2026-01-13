@@ -11,6 +11,11 @@ This project was developed as a submission for the Mobile Application Developer 
 ## 📋 Project ScreenShots
 
 https://github.com/yashajaykadav/DailyQuotesApp/issues/1#issue-3809893910
+<p align="center">
+  <img src="https://github.com/yashajaykadav/DailyQuotesApp/blob/main/screenshots/home.jpeg" width="30%" />
+  <img src="https://github.com/yashajaykadav/DailyQuotesApp/blob/main/screenshots/share.jpeg" width="30%" /> 
+  <img src="https://github.com/yashajaykadav/DailyQuotesApp/blob/main/screenshots/search.jpeg" width="30%" />
+</p>
 
 ## ✨ Features
 
